@@ -43,12 +43,14 @@ class MainActivity : AppCompatActivity() {
                 val user = User(login, email, pass)
 
                 val db = DbHelper(this, null)
-                db.addUser(user)
-                Toast.makeText(this, "Пользователь $login добавлен", Toast.LENGTH_LONG).show()
-                userLogin.text.clear()
-                userEmail.text.clear()
-                userPass.text.clear()
-
+                if (db.addUser(user)) {
+                    Toast.makeText(this, "Пользователь $login добавлен", Toast.LENGTH_LONG).show()
+                    userLogin.text.clear()
+                    userEmail.text.clear()
+                    userPass.text.clear()
+                } else {
+                    Toast.makeText(this, "Логин или email занят", Toast.LENGTH_LONG).show()
+                }
             }
 
         }
