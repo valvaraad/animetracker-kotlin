@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Animetracker</string>
+
+    <string-array name="anime_status_options">
+        <item>Смотрю</item>
+        <item>Планирую посмотреть</item>
+        <item>Просмотрено</item>
+        <item>Брошено</item>
+        <item>Отложено</item>
+    </string-array>
+    <string-array name="manga_status_options">
+        <item>Читаю</item>
+        <item>Планирую прочитать</item>
+        <item>Прочитано</item>
+        <item>Брошено</item>
+        <item>Отложено</item>
+    </string-array>
+</resources>
