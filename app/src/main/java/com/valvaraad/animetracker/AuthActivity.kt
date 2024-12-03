@@ -32,6 +32,13 @@ class AuthActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val db = DbHelper(this, null)
+        val nativeLib = NativeLib()
+
+        val users = db.getAllUsers()
+        for (user in users)
+            user.login?.let { user.pass?.let { it1 -> nativeLib.addUser(it, it1) } }
+
         button.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val pass = userPass.text.toString().trim()
@@ -39,10 +46,13 @@ class AuthActivity : AppCompatActivity() {
             if (login == "" || pass == "") {
                 Toast.makeText(this, "Заполните все поля.", Toast.LENGTH_LONG).show()
             } else {
-                val db = DbHelper(this, null)
+
                 val isAuth = db.getUser(login, pass)
 
-                if (isAuth) {
+
+                if (nativeLib.isUserValid(login, pass)) {
+                    val currentUserId = db.getUserId(login)
+                    UserManager.saveCurrentUser(this, currentUserId)
                     Toast.makeText(this, "$login: вход успешный", Toast.LENGTH_LONG).show()
                     userLogin.text.clear()
                     userPass.text.clear()

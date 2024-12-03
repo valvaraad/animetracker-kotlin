@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#a50104"
+    tools:context=".AuthActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="Вход в аккаунт"
+        android:textColor="#e3e9c2"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/user_login"
+        android:layout_width="500dp"
+        android:layout_height="75dp"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_marginBottom="20dp"
+        android:hint="Имя пользователя"
+        android:textColorHint="#e3e9c2"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/user_pass"
+        android:layout_width="500dp"
+        android:layout_height="75dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_marginBottom="30dp"
+        android:hint="Пароль"
+        android:textColorHint="#e3e9c2"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/button_auth"
+        android:layout_width="280dp"
+        android:height="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:textSize="26sp"
+        android:text="Войти"
+        android:textStyle="bold"
+        android:textColor="#e3e9c2"
+        android:backgroundTint="#23231a" />
+
+    <TextView
+        android:id="@+id/link_to_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu"
+        android:text="Нет аккаунта? Зарегистрироваться"
+        android:textColor="#e3e9c2"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

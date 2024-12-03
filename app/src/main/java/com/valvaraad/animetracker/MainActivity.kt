@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -21,6 +22,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }*/
+        val remember = UserManager.getCurrentUser(this)
+
+        if (remember != null) {
+            val intent = Intent(this, AnimelistActivity::class.java)
+            startActivity(intent)
+        }
+
         val userLogin: EditText = findViewById(R.id.user_login)
         val userEmail: EditText = findViewById(R.id.user_email)
         val userPass: EditText = findViewById(R.id.user_pass)

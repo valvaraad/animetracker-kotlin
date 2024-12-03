@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.valvaraad.animetracker"
     compileSdk = 34
+    ndkVersion = "28.0.12674087"
 
     defaultConfig {
         applicationId = "com.valvaraad.animetracker"
@@ -15,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+            }
+        }
     }
 
     buildTypes {
@@ -32,6 +38,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 }
 

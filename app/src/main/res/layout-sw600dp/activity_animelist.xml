@@ -4,63 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#921215"
-    android:layout_height="match_parent"
     tools:context=".AnimelistActivity">
 
     <LinearLayout
         android:id="@+id/button_title_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_gravity="center"
-        android:layout_height="wrap_content">
-
+        android:layout_marginVertical="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20sp"
-            android:layout_marginStart="100sp"
-            android:layout_marginBottom="20sp"
             android:fontFamily="@font/ubuntu"
             android:text="Cписок аниме"
             android:textColor="#e3e9c2"
-            android:textSize="30sp"
+            android:textSize="45sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/add_button"
-            android:layout_width="40sp"
-            android:layout_height="50sp"
-            android:layout_marginTop="17sp"
-            android:layout_marginStart="10sp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
             android:backgroundTint="#921215"
-            android:drawableTop="@drawable/ic_add"
+            android:drawableTop="@drawable/ic_add_600"
             android:textColor="#e3e9c2" />
 
         <Button
             android:id="@+id/link_to_manga"
-            android:layout_width="40sp"
-            android:layout_marginStart="7sp"
-            android:layout_height="50sp"
-            android:layout_marginTop="17sp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
             android:backgroundTint="#921215"
-            android:drawableTop="@drawable/ic_manga"
+            android:drawableTop="@drawable/ic_manga_600"
             android:textColor="#e3e9c2" />
-
     </LinearLayout>
 
-    <!--Spinner
-        android:layout_width="200dp"
-        android:layout_gravity="center"
-        android:layout_height="50dp" /-->
-    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/animeList"
-        android:layout_marginHorizontal="20sp"
-        android:layout_marginVertical="30sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp" />
 
 </LinearLayout>

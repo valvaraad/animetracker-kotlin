@@ -8,32 +8,43 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MangalistActivity : AppCompatActivity() {
+
+    private lateinit var mangaAdapter: MangaAdapter
+    private lateinit var db: DbHelper
+    private var currentUser: User? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
         setContentView(R.layout.activity_mangalist)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
+
+        db = DbHelper(this, null)
+        currentUser = UserManager.getCurrentUser(this)?.let { db.getUser(it) }
 
         val mangaList: RecyclerView = findViewById(R.id.mangaList)
         val addButton: Button = findViewById(R.id.add_button)
         val linkToAnime: Button = findViewById(R.id.link_to_anime)
 
-        val mangas = arrayListOf<Manga>()
+        val mangas = UserManager.getCurrentUser(this)?.let { db.getAllUsersManga(it) }
 
-        mangas.add(Manga(1, "Naruto", 9.51, "Completed", 700, 700))
-        mangas.add(Manga(2, "Demon Slayer", 8.23, "Reading", 20, 207))
-
-        if (mangas.isNotEmpty()) {
-            mangaList.layoutManager = LinearLayoutManager(this)
-            mangaList.adapter = MangaAdapter(mangas, this)
+        if (mangas != null) {
+            mangaAdapter = MangaAdapter(mangas.toMutableList(), this) {
+                manga ->
+                val intent = Intent(this, AddMangaActivity::class.java)
+                intent.putExtra("mangaId", manga.id)
+                intent.putExtra("status", manga.status)
+                intent.putExtra("score", manga.score)
+                intent.putExtra("title", manga.title)
+                intent.putExtra("progress", manga.progress)
+                intent.putExtra("total", manga.total)
+                intent.putExtra("comment", manga.comment)
+                startActivity(intent)
+            }
         }
+        mangaList.layoutManager = LinearLayoutManager(this)
+        mangaList.adapter = mangaAdapter
 
         addButton.setOnClickListener {
-            val intent = Intent(this, AddAnimeActivity::class.java)
+            val intent = Intent(this, AddMangaActivity::class.java)
             startActivity(intent)
         }
 
@@ -41,7 +52,17 @@ class MangalistActivity : AppCompatActivity() {
             val intent = Intent(this, AnimelistActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        refreshMangaList()
+    }
 
+    private fun refreshMangaList() {
+        val updatedMangas = UserManager.getCurrentUser(this)?.let { db.getAllUsersManga(it) }
+        if (updatedMangas != null) {
+            mangaAdapter.updateDataset(updatedMangas.toList())
+        }
     }
 }

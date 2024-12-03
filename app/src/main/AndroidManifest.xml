@@ -18,6 +18,9 @@
             android:name=".AddAnimeActivity"
             android:exported="false" />
         <activity
+            android:name=".AddMangaActivity"
+            android:exported="false" />
+        <activity
             android:name=".MangalistActivity"
             android:exported="false" />
         <activity

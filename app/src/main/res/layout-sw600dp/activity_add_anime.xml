@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#921215"
+    tools:context=".AddAnimeActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#921215"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".AddAnimeActivity">
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="Добавить аниме"
+            android:textColor="#e3e9c2"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/title_input"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Название"
+            android:inputType="text"
+            android:textColorHint="#e3e9c2"
+            android:textSize="25sp" />
+
+        <Spinner
+            android:id="@+id/status_spinner"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="20dp" />
+
+        <EditText
+            android:id="@+id/score_input"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Оценка"
+            android:inputType="numberDecimal"
+            android:textColorHint="#e3e9c2"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/progress_input"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Прогресс просмотра"
+            android:inputType="number"
+            android:textColorHint="#e3e9c2"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/total_input"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Полное кол-во серий"
+            android:inputType="number"
+            android:textColorHint="#e3e9c2"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/comment_input"
+            android:layout_width="500dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="30dp"
+            android:hint="Комментарий"
+            android:inputType="text"
+            android:textColorHint="#e3e9c2"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#23231a"
+            android:text="Добавить"
+            android:textColor="#e3e9c2"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

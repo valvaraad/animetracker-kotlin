@@ -15,12 +15,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class AddAnimeActivity : AppCompatActivity() {
-    
+class AddMangaActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
-        setContentView(R.layout.activity_add_anime)
+        setContentView(R.layout.activity_add_manga)
         /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -36,19 +36,18 @@ class AddAnimeActivity : AppCompatActivity() {
         val commentInput: EditText = findViewById(R.id.comment_input)
         val saveButton: Button = findViewById(R.id.save_button)
 
-
         ArrayAdapter.createFromResource(
             this,
-            R.array.anime_status_options,
-            R.layout.spinner_item_white
+            R.array.manga_status_options,
+            R.layout.spinner_item_red
         ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_item_white)
+            adapter.setDropDownViewResource(R.layout.spinner_item_red)
             statusSpinner.adapter = adapter
         }
 
-        if (intent.getIntExtra("animeId", -1) != -1) {
+        if (intent.getIntExtra("mangaId", -1) != -1) {
             val pageTitle: TextView = findViewById(R.id.page_title)
-            pageTitle.setText("Редактировать аниме")
+            pageTitle.setText("Редактировать мангу")
 
             saveButton.setText("Сохранить")
 
@@ -77,35 +76,35 @@ class AddAnimeActivity : AppCompatActivity() {
             }
         }
 
-        saveButton.setOnClickListener {
-            val editAnimeId = intent.getIntExtra("animeId", -1)
+            saveButton.setOnClickListener {
+                val editMangaId = intent.getIntExtra("mangaId", -1)
 
-            val title = titleInput.text.toString()
-            val score = scoreInput.text.toString().toDoubleOrNull() ?: 0.0
-            val status = statusSpinner.selectedItem.toString()
-            val progress = progressInput.text.toString().toIntOrNull() ?: 0
-            val total = totalInput.text.toString().toIntOrNull() ?: 0
-            val comment = commentInput.text.toString()
+                val title = titleInput.text.toString()
+                val score = scoreInput.text.toString().toDoubleOrNull() ?: 0.0
+                val status = statusSpinner.selectedItem.toString()
+                val progress = progressInput.text.toString().toIntOrNull() ?: 0
+                val total = totalInput.text.toString().toIntOrNull() ?: 0
+                val comment = commentInput.text.toString()
 
-            val anime = Anime(editAnimeId, title, score, status, progress, total, comment)
-            val db = DbHelper(this, null)
+                val manga = Manga(editMangaId, title, score, status, progress, total, comment)
+                val db = DbHelper(this, null)
 
-            if (editAnimeId == -1) {
-                val animeId = db.addAnime(anime)
-                val currentUserId = UserManager.getCurrentUser(this)
+                if (editMangaId == -1) {
 
-                if (currentUserId != null) {
-                    db.addAnimeToUser(currentUserId, animeId)
+                    val mangaId = db.addManga(manga)
+                    val currentUserId = UserManager.getCurrentUser(this)
+
+                    if (currentUserId != null) {
+                        db.addMangaToUser(currentUserId, mangaId)
+                    }
+                } else {
+                    db.editManga(manga)
                 }
 
-            } else {
-                db.editAnime(anime)
+                val resultIntent = Intent()
+                resultIntent.putExtra("new_manga", manga)
+                setResult(Activity.RESULT_OK, resultIntent)
+                finish()
             }
-
-            val resultIntent = Intent()
-            resultIntent.putExtra("new_anime", anime)
-            setResult(Activity.RESULT_OK, resultIntent)
-            finish()
         }
     }
-}
